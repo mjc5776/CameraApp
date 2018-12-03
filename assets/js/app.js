@@ -5,17 +5,16 @@ cameraOutput = document.querySelector("#camera--output"),
 cameraSensor = document.querySelector("#camera--sensor"),
 cameraTrigger = document.querySelector("#camera--trigger")
 
-function cameraStart(){
+function cameraStart() {
     navigator.mediaDevices
         .getUserMedia(constraints)
-        .then(function(stream){
+        .then(function(stream) {
         track = stream.getTracks()[0];
         cameraView.srcObject = stream;
-        })
-    .catch(function(error){
-        console.error("Opps. Something is broken.", error);
-        
     })
+    .catch(function(error) {
+        console.error("Oops. Something is broken.", error);
+    });
 }
 
 cameraTrigger.onclick = function() {
@@ -24,6 +23,8 @@ cameraTrigger.onclick = function() {
     cameraSensor.getContext("2d").drawImage(cameraView, 0, 0);
     cameraOutput.src = cameraSensor.toDataURL("image/webp");
     cameraOutput.classList.add("taken");
+    console.log("Button Click Test");
+    
 };
 
 
